@@ -1,0 +1,34 @@
+{
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules/*",
+        "**/*.spec.ts"
+    ],
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "allowJs": false,
+        "declaration": true,
+        "declarationMap": true,
+        "emitDeclarationOnly": false,
+        "noEmitOnError": true,
+        "esModuleInterop": true,
+        "module": "ESNext",
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "outDir": "build",
+        "strict": true,
+        "useDefineForClassFields": false,
+        "target": "ES2021",
+        "sourceMap": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    }
+}
