@@ -1,6 +1,6 @@
 {
     "name": "ikomida-orders-check-job",
-    "version": "1.0.6",
+    "version": "0.0.1",
     "description": "ikomida orders-check job",
     "private": true,
     "module": "build/job.js",
