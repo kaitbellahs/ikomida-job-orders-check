@@ -16,6 +16,7 @@ class OrdersCheckJob {
 
   async run() {
     try {
+      this.logger.error(`Orders checker started...!`)
       const orders = await DBModels.OrderModel.findAll({
         order: [['createdAt', 'DESC']],
         where: {
@@ -67,7 +68,8 @@ class OrdersCheckJob {
             } catch (exception: any) {
               new Utils.iKomidaError(
                 Utils.iKomidaError.IKOMIDA_ORDERS_SERVICE_CHANGE_ORDER_STATUS_PAYMENT_EXCEPTION,
-                exception?.message, exception
+                exception?.message,
+                exception
               ).log(this.logger)
               throw new Utils.iKomidaError(Utils.iKomidaError.IKOMIDA_ORDERS_SERVICE_CHANGE_ORDER_STATUS_ERROR)
             }
@@ -76,7 +78,8 @@ class OrdersCheckJob {
           try {
             const pNModel = order.user?.pN
             if (pNModel) {
-              await Utils.Notification.sendNotification(this.logger,
+              await Utils.Notification.sendNotification(
+                this.logger,
                 Utils.Notification.USER_ORDER_UPDATED,
                 order?.id,
                 order.contract?.id,
@@ -84,7 +87,8 @@ class OrdersCheckJob {
                 status.name
               )
             }
-            await Utils.Notification.sendNotification(this.logger,
+            await Utils.Notification.sendNotification(
+              this.logger,
               Utils.Notification.VENDOR_ORDER_UPDATED,
               order?.id,
               order.contract?.id,
