@@ -24,7 +24,7 @@ class OrdersCheckJob {
             [Domain.SqlDB.Op.in]: [Types.Types.TOrderStatus.WAITING_PAYMENT, Types.Types.TOrderStatus.OPEN]
           },
           createdAt: {
-            [Domain.SqlDB.Op.gt]: new Date(new Date().getTime() - 15 * 60 * 1000)
+            [Domain.SqlDB.Op.lt]: new Date(new Date().getTime() - 15 * 60 * 1000)
           }
         },
         include: [
