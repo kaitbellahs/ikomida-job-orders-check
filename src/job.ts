@@ -8,7 +8,7 @@ name = name
   .replace(/-\w/g, (m: string[]) => m[1].toUpperCase())
 
 class OrdersCheckJob {
-  logger
+  logger: Utils.Logger
 
   constructor() {
     this.logger = Utils.Logger.getInstance(name)
@@ -16,7 +16,7 @@ class OrdersCheckJob {
 
   async run() {
     try {
-      this.logger.error(`Orders checker started...!`)
+      this.logger.info(`Orders checker started...!`)
       const orders = await DBModels.OrderModel.findAll({
         order: [['createdAt', 'DESC']],
         where: {
